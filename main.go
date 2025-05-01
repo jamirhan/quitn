@@ -33,19 +33,18 @@ func main() {
 		log.Panic(err)
 	}
 
-	now := time.Now()
-	location := time.FixedZone("Moscow", 3*3600)
+	now := time.Now().In(time.FixedZone("Moscow", 3*3600))
 
 	todayAt13 := time.Date(
 		now.Year(),
 		now.Month(),
 		now.Day(),
 		13, 0, 0, 0,
-		location,
+		time.FixedZone("Moscow", 3*3600),
 	)
 
-	if time.Now().Hour() > 13 {
-		bot.Send(tgbotapi.NewMessage(chatID, "bot exited unsuccessfully, manual action required, current time: "+time.Now().Format(time.RFC3339)))
+	if now.Hour() > 13 {
+		bot.Send(tgbotapi.NewMessage(chatID, "bot exited unsuccessfully, manual action required, current time: "+now.Format(time.RFC3339)))
 		return
 	}
 
