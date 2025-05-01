@@ -23,6 +23,10 @@ func sleepFor(d time.Duration) {
 
 func main() {
 	token := os.Getenv("BOT_TOKEN")
+	if token == "" {
+		log.Panic("BOT_TOKEN is not set")
+	}
+
 	var err error
 	bot, err = tgbotapi.NewBotAPI(token)
 	if err != nil {
@@ -40,7 +44,7 @@ func main() {
 	)
 
 	if time.Now().Hour() > 13 {
-		bot.Send(tgbotapi.NewMessage(chatID, "bot exited unsuccessfully, manual action required"))
+		bot.Send(tgbotapi.NewMessage(chatID, "bot exited unsuccessfully, manual action required, current time: "+time.Now().Format(time.RFC3339)))
 		return
 	}
 
