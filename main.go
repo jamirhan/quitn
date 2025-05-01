@@ -34,13 +34,14 @@ func main() {
 	}
 
 	now := time.Now()
+	location := time.FixedZone("Moscow", 3*3600)
 
 	todayAt13 := time.Date(
 		now.Year(),
 		now.Month(),
 		now.Day(),
 		13, 0, 0, 0,
-		now.Location(),
+		location,
 	)
 
 	if time.Now().Hour() > 13 {
