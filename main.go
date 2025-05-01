@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"log"
 	"math/rand"
 	"os"
@@ -17,8 +16,8 @@ var bot *tgbotapi.BotAPI
 var chatID = int64(5448179159)
 
 func sleepFor(d time.Duration) {
-	// time.Sleep(d)
-	bot.Send(tgbotapi.NewMessage(chatID, fmt.Sprintf("will sleep for %s", d.String())))
+	time.Sleep(d)
+	// bot.Send(tgbotapi.NewMessage(chatID, fmt.Sprintf("will sleep for %s", d.String())))
 }
 
 func main() {
